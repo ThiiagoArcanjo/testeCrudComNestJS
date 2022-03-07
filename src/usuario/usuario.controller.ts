@@ -34,8 +34,9 @@ export class UsuarioController {
         return  this.usuarioService.cadastrar(data);
     }
 
-    @Delete(':id')
-    async deletarUsuario(id: number){
+    //Implementa o método cadastrar
+    @Delete('deletarUsuario/:id')
+    async deletarUsuario(@Param('id') id: number){
         return this.usuarioService.deletarUsuario(id);
     }
 
