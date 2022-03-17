@@ -1,0 +1,15 @@
+#Testando requisições direto pelo código
+
+
+#listar todos os usuários
+GET  /usuario/listar
+Host: localhost:3000
+Content-Type: application/json
+
+#listar todos
+GET /usuario/listarPorId/id
+Host: localhost:3000
+Content-Type: application/json
+{
+    "id": 1
+}

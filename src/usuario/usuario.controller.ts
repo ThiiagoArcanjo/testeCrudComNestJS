@@ -4,6 +4,7 @@ import { UsuarioCadastrarDto } from './dto/usuario.cadastrar.dto';
 import { Usuario } from './usuario.entity';
 import { UsuarioService } from './usuario.service';
 
+
 @Controller('usuario')
 export class UsuarioController {
 

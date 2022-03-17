@@ -1,6 +1,7 @@
 //Entidade responsavel pelo objeto e criar a tabela no banco de dados
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Endereco } from 'src/endereco/endereco.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity() //defini que a calsse é  uma entidade
 export class Usuario {
@@ -15,5 +16,9 @@ export class Usuario {
 
   @Column({ length: 100 })
   password: string;
+
+  //1 para N com o endereco
+  @OneToMany(() => Endereco, (endereco) => endereco.usuario)
+  enderecos: Endereco[]
 
 }
