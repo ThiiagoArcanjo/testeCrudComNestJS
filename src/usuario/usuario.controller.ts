@@ -42,15 +42,14 @@ export class UsuarioController {
         return this.usuarioService.deletarUsuario(id);
     }
 
-    /*
+    
     @UseGuards(AuthGuard('local'))
     @Post('auth/login')
     async login(@Request() req) {
-        return req.user;
+        return req.usario;
     }
 
-    */
-
+    
 
 
 }
