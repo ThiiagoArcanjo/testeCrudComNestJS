@@ -3,6 +3,7 @@ import { ResultadoDto } from 'src/dto/resultado.dto';
 import { Repository } from 'typeorm';
 import { UsuarioCadastrarDto } from './dto/usuario.cadastrar.dto';
 import { Usuario } from './usuario.entity';
+import * as bcrypt from 'bcrypt';
 
 //Responsavel por serviços com o banco de dados
 //Injeta a conexão
@@ -35,7 +36,7 @@ export class UsuarioService {
     let usuario = new Usuario()
     usuario.email = data.email
     usuario.nome = data.nome
-    usuario.password = data.senha // Na interface o atributo esta descrito como senha, porém na entity esta password e por isso a diferença
+    usuario.password = bcrypt.hashSync(data.senha, 8) // Na interface o atributo esta descrito como senha, porém na entity esta password e por isso a diferença
     return this.usuarioRepository.save(usuario) //respositório instanciado no construtor, retorna o cadastro do usuário com sucesso ou erro 
     .then((result) => {
         return <ResultadoDto>{
@@ -57,6 +58,7 @@ export class UsuarioService {
     return this.usuarioRepository.delete(id);
   }
 
-
-
+  async findOne(email: string): Promise<Usuario | undefined> {
+    return this.usuarioRepository.findOne({email : email});
+  }
 }
