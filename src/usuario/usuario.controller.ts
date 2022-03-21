@@ -23,12 +23,14 @@ export class UsuarioController {
     }
 
     //Impletamenta o metodo update
+    @UseGuards(JwtAuthGuard)
     @Put('alterarUsuario/:id')
     async alterarUsuario(@Param('id') id: number, @Body() usuario: Usuario){
         return this.usuarioService.update(id, usuario);
     }
 
     //Implementa o método do serviço listarPorId
+    @UseGuards(JwtAuthGuard)
     @Get('listarPorId/:id')
     async listarPorId(@Param('id') id : number) : Promise<Usuario>{
         return this.usuarioService.listarPorId(id);
@@ -37,12 +39,14 @@ export class UsuarioController {
 
     
     //Implementa o método do serviço cadastrar.
+    
     @Post('cadastrar')
     async cadastrar(@Body() data: UsuarioCadastrarDto): Promise<ResultadoDto>{
         return  this.usuarioService.cadastrar(data);
     }
 
     //Implementa o método cadastrar
+    @UseGuards(JwtAuthGuard)
     @Delete('deletarUsuario/:id')
     async deletarUsuario(@Param('id') id: number){
         return this.usuarioService.deletarUsuario(id);

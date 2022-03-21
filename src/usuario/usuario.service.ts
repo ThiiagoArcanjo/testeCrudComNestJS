@@ -27,6 +27,7 @@ export class UsuarioService {
 
   //Retorna uma alteração por ID
   async update(id: number, usuario: Usuario){
+      usuario.password = bcrypt.hashSync(usuario.password, 8)
       return this.usuarioRepository.update(id, usuario);
   }
 
