@@ -7,5 +7,4 @@ export interface EnderecoCadastrarDto{
     cidade: string;
     estado: string;
     complemento: string;
-    usuario: Usuario; 
 }

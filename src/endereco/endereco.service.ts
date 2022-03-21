@@ -16,7 +16,7 @@ export class EnderecoService {
     return this.enderecoRepository.find();
   }
 
-  async cadastrar(data: EnderecoCadastrarDto): Promise<ResultadoDto>{
+  async cadastrar(data: EnderecoCadastrarDto, usuario:Usuario): Promise<ResultadoDto>{
     let endereco =  new Endereco();
     endereco.cep = data.cep;
     endereco.rua = data.rua;
@@ -24,7 +24,7 @@ export class EnderecoService {
     endereco.cidade = data.cidade;
     endereco.estado = data.estado;
     endereco.complemento = data.complemento;
-    endereco.usuario = data.usuario;
+    endereco.usuario = usuario;
     return this.enderecoRepository.save(endereco).then(() => {
       return <ResultadoDto>{
         status: true,
