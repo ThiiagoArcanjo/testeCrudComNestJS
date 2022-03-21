@@ -5,13 +5,18 @@ import { Usuario } from './usuario.entity';
 import { UsuarioService } from './usuario.service';
 import { AuthGuard } from '@nestjs/passport';
 import { UseGuards } from '@nestjs/common';
+import { AuthService } from 'src/auth/auth.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('usuario')
 export class UsuarioController {
 
-    constructor(private readonly usuarioService: UsuarioService) {}
+    constructor(private readonly usuarioService: UsuarioService,
+        private authService: AuthService
+        ) {}
 
     //Implementa o método do serviço listar.
+    @UseGuards(JwtAuthGuard)
     @Get('listar')
     async listar(): Promise<Usuario[]>{
         return this.usuarioService.listar();
@@ -30,6 +35,7 @@ export class UsuarioController {
 
     }
 
+    
     //Implementa o método do serviço cadastrar.
     @Post('cadastrar')
     async cadastrar(@Body() data: UsuarioCadastrarDto): Promise<ResultadoDto>{
@@ -44,9 +50,10 @@ export class UsuarioController {
 
     
     @UseGuards(AuthGuard('local'))
-    @Post('auth/login')
+    @Post('login')
     async login(@Request() req) {
-        return req.usario;
+        //return req.user; //Tem que retornar exatamente dessa forma. // Retirado para retornar o metodo do authservice
+        return this.authService.login(req.user);
     }
 
     

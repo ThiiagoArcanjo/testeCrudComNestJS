@@ -59,6 +59,6 @@ export class UsuarioService {
   }
 
   async findOne(email: string): Promise<Usuario | undefined> {
-    return this.usuarioRepository.findOne({email : email});
+    return this.usuarioRepository.findOne({email : email }); // retorna usuario com e-mail ou indefinido
   }
 }

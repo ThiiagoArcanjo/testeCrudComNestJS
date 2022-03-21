@@ -3,11 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsuarioModule } from './usuario/usuario.module';
 import { AuthModule } from './auth/auth.module';
+import { TokenModule } from './token/token.module';
 
 @Module({
   imports: [
-    UsuarioModule,
-    AuthModule // É preciso adicionar o usuarioModule para que ele seja visto no sistema
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
