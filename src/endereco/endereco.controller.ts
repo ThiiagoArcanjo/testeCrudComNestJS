@@ -19,4 +19,5 @@ export class EnderecoController {
   async cadastrar(@Body() data: EnderecoCadastrarDto): Promise<ResultadoDto>{
     return this.enderecoService.cadastrar(data);
   }
+
 }
