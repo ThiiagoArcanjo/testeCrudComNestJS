@@ -1,6 +1,5 @@
 import { Usuario } from "src/usuario/usuario.entity";
-import { usuarioProviders } from "src/usuario/usuario.providers";
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Endereco{
